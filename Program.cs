@@ -82,11 +82,11 @@ class NumberGuessingGame() {
     }
 
     public static bool Guess(Player plr) {
-        Console.Write($"Enter a guess {plr.name}: ");
+        Console.Write($"\nEnter a guess {plr.name}: ");
         int guess = int.Parse(Console.ReadLine());
 
         if (guess == number)
-            return true;
+            return true; //winner
         else if (guess > number)
             Console.WriteLine("Number is lower");
         else if (guess < number)
@@ -110,17 +110,17 @@ class MultiplicationGame() {
     }
 
     public static bool Guess(Player plr) {
-        int num1 = random.Next(0, 101);
+        int num1 = random.Next(0, 101); //no constraints specified??
         int num2 = random.Next(0, 101);
-        int total = num1 * num2;
+        int total = num1 * num2; 
 
         Console.Write($"{plr.name}, what is {num1} * {num2}? ");
         int guess = int.Parse(Console.ReadLine());
 
         if (guess == total)
-            return false; //correct
+            return false;
         else
-            return true; //wrong
+            return true; //person lost
     }
 }
 
@@ -142,15 +142,15 @@ class SpellingGame() {
 
         Console.Write($"Enter spelling for word {plr2.name}: ");
         if (string.Equals(word, Console.ReadLine().ToLower()))
-            return false; //correct
+            return false;
         else
-            return true; //wrong
+            return true; //person lost
     }
 }
 
 
-class BattleshipGame() {
-    public static bool[] grid = new bool[25];
+class BattleshipGame() { //"bs"
+    public static bool[] grid = new bool[25]; //is the grid meant to be 5x5
 
     public static Player[] Main(Player plr1, Player plr2) {
         Random random = new Random();
@@ -178,7 +178,7 @@ class BattleshipGame() {
 
     public static bool Guess(Player plr) {
         while (true) {
-            Console.Write($"Enter location (1-25) {plr.name}: ");
+            Console.Write($"\nEnter location (1-25) {plr.name}: ");
             int guess = int.Parse(Console.ReadLine()) - 1;
 
             if (0 > guess || guess > 24) {

@@ -12,3 +12,4 @@ c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\ref
 c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.pdb
 c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.genruntimeconfig.cache
 c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\ref\complexProgramHW.dll
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.sourcelink.json

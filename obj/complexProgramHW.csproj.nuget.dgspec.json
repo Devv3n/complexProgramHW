@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\complexProgramHW.csproj": {}
+    "c:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\complexProgramHW.csproj": {}
   },
   "projects": {
-    "C:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\complexProgramHW.csproj": {
+    "c:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\complexProgramHW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\complexProgramHW.csproj",
+        "projectUniqueName": "c:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\complexProgramHW.csproj",
         "projectName": "complexProgramHW",
-        "projectPath": "C:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\complexProgramHW.csproj",
+        "projectPath": "c:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\complexProgramHW.csproj",
         "packagesPath": "C:\\Users\\komek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\obj\\",
+        "outputPath": "c:\\Users\\komek\\Desktop\\Code\\CS\\cs-homework\\complexProgramHW\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\komek\\AppData\\Roaming\\NuGet\\NuGet.Config",
