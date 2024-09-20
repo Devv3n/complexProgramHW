@@ -25,7 +25,7 @@ class Program {
         bool gameLoop = true;
         while (gameLoop) {
             Console.WriteLine($"\nScores:\n{plr1.name} - {plr1.score}\n{plr2.name} - {plr2.score}");
-            Console.Write($"\nMenu:\n1 - Number Guessing Game\n2 - Multiplication Game\n3 - Spelling Game\n4 - Battleship Game\n5 - the no game\n0 - escape...\n\nEnter a number to play the specified game {winnerLoser[1].name}: ");
+            Console.Write($"\nMenu:\n1 - Number Guessing Game\n2 - Multiplication Game\n3 - Spelling Game\n4 - Battleship Game\n5 - Rock Paper Siccors\n0 - escape...\n\nEnter a number to play the specified game {winnerLoser[1].name}: ");
             int choice = int.Parse(Console.ReadLine());
 
             Console.Clear();
@@ -44,8 +44,8 @@ class Program {
                     break;
                 
                 case 5:
-                    Console.WriteLine("haha no.");
-                    continue;
+                    winnerLoser = RockPaperSiccors.Main(winnerLoser[1], winnerLoser[0]);
+                    break;
 
                 case 0:
                     gameLoop = false;
@@ -202,4 +202,36 @@ class BattleshipGame() { //"bs"
 }
 
 
-//game 5 goes here......
+class RockPaperSiccors() {
+    public static Player[] Main(Player plr1, Player plr2) {
+        while (true) {
+            int s1 = Select(plr1);
+            int s2 = Select(plr2);
+            
+            Console.Clear();
+            if (s1 == s2) {
+                Console.WriteLine("Draw!");
+                Thread.Sleep(1000);
+            } 
+            //   R P S
+            // R|- 1 2
+            // P|2 - 1
+            // S|1 2 -
+            else if ((s1 == 1 && s2 == 3) || (s1 == 2 && s2 == 1) || (s1 == 3 && s2 == 2))
+                return [plr1, plr2];
+            else if ((s2 == 1 && s1 == 3) || (s2 == 2 && s1 == 1) || (s2 == 3 && s1 == 2))
+                return [plr2, plr1];
+        }
+    }
+
+    public static int Select(Player plr) {
+        while (true) {
+            Console.Clear();
+            Console.Write($"{plr.name}'s turn\n\n1 - Rock\n2 - Paper\n3 - Siccors\nEnter selection: ");
+            
+            int input = int.Parse(Console.ReadLine());
+            if (1 <= input && input <= 3)
+                return input;
+        }
+    }
+}
