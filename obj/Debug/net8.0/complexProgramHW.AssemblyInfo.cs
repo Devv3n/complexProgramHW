@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("complexProgramHW")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9bad6a9f1d0cdf4ab4ce84d31349e508fe5bad56")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d2379df7e5d777f938835c603591a20f4211a4b")]
 [assembly: System.Reflection.AssemblyProductAttribute("complexProgramHW")]
 [assembly: System.Reflection.AssemblyTitleAttribute("complexProgramHW")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
