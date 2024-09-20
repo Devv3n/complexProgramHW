@@ -1,0 +1,14 @@
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\bin\Debug\net8.0\complexProgramHW.exe
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\bin\Debug\net8.0\complexProgramHW.deps.json
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\bin\Debug\net8.0\complexProgramHW.runtimeconfig.json
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\bin\Debug\net8.0\complexProgramHW.dll
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\bin\Debug\net8.0\complexProgramHW.pdb
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.AssemblyInfoInputs.cache
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.AssemblyInfo.cs
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.csproj.CoreCompileInputs.cache
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.dll
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\refint\complexProgramHW.dll
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.pdb
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\complexProgramHW.genruntimeconfig.cache
+c:\Users\komek\Desktop\Code\CS\cs-homework\complexProgramHW\obj\Debug\net8.0\ref\complexProgramHW.dll
