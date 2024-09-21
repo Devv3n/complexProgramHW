@@ -1,5 +1,5 @@
-﻿//cs8618// cs8604 cs8600 cs8602 cs0028 ignoreeeeeeeeeee these warnings please :)
-//#pragma warning disable CS8618
+﻿//cs8618 cs8604 cs8600 cs8602 cs0028 ignoreeeeeeeeeee these warnings please :)
+#pragma warning disable CS8618
 #pragma warning disable CS8604
 #pragma warning disable CS8602
 #pragma warning disable CS8600
@@ -12,11 +12,18 @@ class Player {
 }
 
 class Program {
-    public static Player plr1 = new Player();
+    public static Player plr1 = new Player(); //i dont remember why i placed these outside of main originally
     public static Player plr2 = new Player();
-    public static Player[] winnerLoser = [plr2, plr1];
+    public static Player[] winnerLoser;
+    public static bool[] gamesPlayed = new bool[5];
 
     static void Main(string[] args) {
+        Random random = new Random();
+        if (random.Next(0,2) == 0)
+            winnerLoser = [plr2, plr1];
+        else
+            winnerLoser = [plr1, plr2];
+
         Console.Write("Enter player 1's name: ");
         plr1.name = Console.ReadLine();
         Console.Write("Enter player 2's name: ");
@@ -29,6 +36,11 @@ class Program {
             int choice = int.Parse(Console.ReadLine());
 
             Console.Clear();
+            if (1 <= choice && choice <= 5 && gamesPlayed[choice-1]) {
+                Console.WriteLine("Game already played!");
+                continue;
+            }
+
             switch (choice) {
                 case 1:
                     winnerLoser = NumberGuessingGame.Main(winnerLoser[1], winnerLoser[0]);
@@ -42,7 +54,6 @@ class Program {
                 case 4:
                     winnerLoser = BattleshipGame.Main(winnerLoser[1], winnerLoser[0]);
                     break;
-                
                 case 5:
                     winnerLoser = RockPaperSiccors.Main(winnerLoser[1], winnerLoser[0]);
                     break;
@@ -55,12 +66,14 @@ class Program {
                     continue;
             }
 
-            Console.Clear();
-            Console.WriteLine($"{winnerLoser[0].name} won the game!");
+            gamesPlayed[choice-1] = true;
 
             winnerLoser[0].score++;
             if (winnerLoser[0].score >= 2)
                 gameLoop = false;
+
+            Console.Clear();
+            Console.WriteLine($"{winnerLoser[0].name} won the game!");
         }
     }
 }
