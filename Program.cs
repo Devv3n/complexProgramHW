@@ -37,7 +37,7 @@ class Program {
 
             Console.Clear();
             if (1 <= choice && choice <= 5 && gamesPlayed[choice-1]) {
-                Console.WriteLine("Game already played!");
+                Console.WriteLine($"Game {choice} already played!");
                 continue;
             }
 
