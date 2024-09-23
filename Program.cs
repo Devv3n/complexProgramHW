@@ -1,11 +1,4 @@
-﻿//cs8618 cs8604 cs8600 cs8602 cs0028 ignoreeeeeeeeeee these warnings please :)
-#pragma warning disable CS8618
-#pragma warning disable CS8604
-#pragma warning disable CS8602
-#pragma warning disable CS8600
-#pragma warning disable CS0028
-
-class Player {
+﻿class Player {
     public string? name;
     public int score;
     public int bsScore;
@@ -14,56 +7,57 @@ class Player {
 class Program {
     public static Player plr1 = new Player(); //i dont remember why i placed these outside of main originally
     public static Player plr2 = new Player();
-    public static Player[] winnerLoser;
+    public static Player[] winnerLoser = [plr1, plr2];
     public static bool[] gamesPlayed = new bool[5];
 
     static void Main(string[] args) {
         Random random = new Random();
         if (random.Next(0,2) == 0)
             winnerLoser = [plr2, plr1];
-        else
-            winnerLoser = [plr1, plr2];
 
-        Console.Write("Enter player 1's name: ");
-        plr1.name = Console.ReadLine();
-        Console.Write("Enter player 2's name: ");
-        plr2.name = Console.ReadLine();
+        GetPlayerName(plr1, "player 1");
+        GetPlayerName(plr2, "player 2");
+        Console.Clear();
     
         bool gameLoop = true;
         while (gameLoop) {
             Console.WriteLine($"\nScores:\n{plr1.name} - {plr1.score}\n{plr2.name} - {plr2.score}");
             Console.Write($"\nMenu:\n1 - Number Guessing Game\n2 - Multiplication Game\n3 - Spelling Game\n4 - Battleship Game\n5 - Rock Paper Siccors\n0 - escape...\n\nEnter a number to play the specified game {winnerLoser[1].name}: ");
-            int choice = int.Parse(Console.ReadLine());
+            
+            int choice;            
+            if (!int.TryParse(Console.ReadLine(), out choice) || 0 > choice || choice > 5) {
+                Console.Clear();   
+                Console.WriteLine("Invalid selection!!");
+                continue;
+            }
 
             Console.Clear();
-            if (1 <= choice && choice <= 5 && gamesPlayed[choice-1]) {
+            if (choice != 0 && gamesPlayed[choice-1]) {
                 Console.WriteLine($"Game {choice} already played!");
                 continue;
             }
 
             switch (choice) {
                 case 1:
-                    winnerLoser = NumberGuessingGame.Main(winnerLoser[1], winnerLoser[0]);
+                    winnerLoser = NumberGuessingGame.GameMain(winnerLoser[1], winnerLoser[0]);
                     break;
                 case 2:
-                    winnerLoser = MultiplicationGame.Main(winnerLoser[1], winnerLoser[0]);
+                    winnerLoser = MultiplicationGame.GameMain(winnerLoser[1], winnerLoser[0]);
                     break;
                 case 3:
-                    winnerLoser = SpellingGame.Main(winnerLoser[1], winnerLoser[0]);
+                    winnerLoser = SpellingGame.GameMain(winnerLoser[1], winnerLoser[0]);
                     break;
                 case 4:
-                    winnerLoser = BattleshipGame.Main(winnerLoser[1], winnerLoser[0]);
+                    winnerLoser = BattleshipGame.GameMain(winnerLoser[1], winnerLoser[0]);
                     break;
                 case 5:
-                    winnerLoser = RockPaperSiccors.Main(winnerLoser[1], winnerLoser[0]);
+                    winnerLoser = RockPaperSiccors.GameMain(winnerLoser[1], winnerLoser[0]);
                     break;
 
                 case 0:
                     gameLoop = false;
                     continue;
-                default:
-                    Console.WriteLine("Invalid selection!!");
-                    continue;
+                    
             }
 
             gamesPlayed[choice-1] = true;
@@ -75,6 +69,23 @@ class Program {
             Console.Clear();
             Console.WriteLine($"{winnerLoser[0].name} won the game!");
         }
+
+        Console.WriteLine("Goodbye!");
+        Thread.Sleep(2000);
+    }
+
+    static void GetPlayerName(Player plr, string plrType) {
+        while (true) {
+            Console.Write($"\nEnter {plrType}'s name: ");
+            string? name = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(name)) {
+                Console.WriteLine("Invalid player name!");
+            } else {
+                plr.name = name;
+                return;
+            }
+        }
     }
 }
 
@@ -82,7 +93,7 @@ class Program {
 class NumberGuessingGame() {
     public static int number;
 
-    public static Player[] Main(Player plr1, Player plr2) {
+    public static Player[] GameMain(Player plr1, Player plr2) {
         Random random = new Random();
         number = random.Next(0, 101);
         
@@ -95,17 +106,24 @@ class NumberGuessingGame() {
     }
 
     public static bool Guess(Player plr) {
-        Console.Write($"\nEnter a guess {plr.name}: ");
-        int guess = int.Parse(Console.ReadLine());
+        while (true) {
+            Console.Write($"\nEnter a guess {plr.name}: ");
+            
+            int guess;
+            if (!int.TryParse(Console.ReadLine(), out guess)) {
+                Console.WriteLine("Invalid input!");
+                continue;
+            }
 
-        if (guess == number)
-            return true; //winner
-        else if (guess > number)
-            Console.WriteLine("Number is lower");
-        else if (guess < number)
-            Console.WriteLine("Number is higher");
+            if (guess == number)
+                return true; //winner
+            else if (guess > number)
+                Console.WriteLine("Number is lower");
+            else if (guess < number)
+                Console.WriteLine("Number is higher");
 
-        return false;
+            return false;
+        }
     }
 }
 
@@ -113,7 +131,7 @@ class NumberGuessingGame() {
 class MultiplicationGame() {
     public static Random random = new Random();
 
-    public static Player[] Main(Player plr1, Player plr2) {
+    public static Player[] GameMain(Player plr1, Player plr2) {
         while (true) {
             if (Guess(plr1))
                 return [plr2, plr1];
@@ -125,21 +143,28 @@ class MultiplicationGame() {
     public static bool Guess(Player plr) {
         int num1 = random.Next(0, 101); //no constraints specified??
         int num2 = random.Next(0, 101);
-        int total = num1 * num2; 
+        int total = num1 * num2;
 
-        Console.Write($"{plr.name}, what is {num1} * {num2}? ");
-        int guess = int.Parse(Console.ReadLine());
+        while (true) {
+            Console.Write($"\n{plr.name}, what is {num1} * {num2}? ");
+            
+            int guess;
+            if (!int.TryParse(Console.ReadLine(), out guess)) {
+                Console.WriteLine("Invalid input!");
+                continue;
+            }
 
-        if (guess == total)
-            return false;
-        else
-            return true; //person lost
+            if (guess == total)
+                return false;
+            else
+                return true; //person lost
+        }
     }
 }
 
 
 class SpellingGame() {
-    public static Player[] Main(Player plr1, Player plr2) {    
+    public static Player[] GameMain(Player plr1, Player plr2) {    
         while (true) {
             if (Guess(plr1, plr2))
                 return [plr1, plr2];
@@ -149,15 +174,36 @@ class SpellingGame() {
     }
 
     public static bool Guess(Player plr1, Player plr2) {
-        Console.Write($"Enter word to guess {plr1.name}: ");
-        string word = Console.ReadLine();
         Console.Clear();
+        string? word;
+        while (true) {
+            Console.Write($"Enter word to guess {plr1.name}: ");
+            word = Console.ReadLine();
+            
+            Console.Clear();
+            if (string.IsNullOrWhiteSpace(word)) {
+                Console.WriteLine("Invalid word entered!");
+                continue;
+            }
+            break;
+        }
+        word = word.ToLower();
 
-        Console.Write($"Enter spelling for word {plr2.name}: ");
-        if (string.Equals(word, Console.ReadLine().ToLower()))
-            return false;
-        else
-            return true; //person lost
+        while (true) {
+            Console.Write($"Enter spelling for word {plr2.name}: ");
+            
+            string? guess = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(guess)) {
+                Console.Clear();
+                Console.WriteLine("Invalid guess!");
+                continue;
+            }
+
+            if (string.Equals(word, guess.ToLower()))
+                return false;
+            else
+                return true; //person lost
+        }
     }
 }
 
@@ -165,7 +211,7 @@ class SpellingGame() {
 class BattleshipGame() { //"bs"
     public static bool[] grid = new bool[25]; //is the grid meant to be 5x5
 
-    public static Player[] Main(Player plr1, Player plr2) {
+    public static Player[] GameMain(Player plr1, Player plr2) {
         Random random = new Random();
         int shipCount = 0;
 
@@ -192,15 +238,15 @@ class BattleshipGame() { //"bs"
     public static bool Guess(Player plr) {
         while (true) {
             Console.Write($"\nEnter location (1-25) {plr.name}: ");
-            int guess = int.Parse(Console.ReadLine()) - 1;
-
-            if (0 > guess || guess > 24) {
+            
+            int guess;
+            if (!int.TryParse(Console.ReadLine(), out guess) || 0 > guess-1 || guess-1 > 24) {
                 Console.WriteLine("Invalid location guessed!");
                 continue;
-            } else if (grid[guess]) {
+            } else if (grid[guess-1]) {
                 Console.WriteLine("Hit!");
                 
-                grid[guess] = false;
+                grid[guess-1] = false;
                 plr.bsScore++;
 
                 if (plr.bsScore >= 2)
@@ -216,7 +262,7 @@ class BattleshipGame() { //"bs"
 
 
 class RockPaperSiccors() {
-    public static Player[] Main(Player plr1, Player plr2) {
+    public static Player[] GameMain(Player plr1, Player plr2) {
         while (true) {
             int s1 = Select(plr1);
             int s2 = Select(plr2);
@@ -238,13 +284,17 @@ class RockPaperSiccors() {
     }
 
     public static int Select(Player plr) {
+        Console.Clear();
         while (true) {
-            Console.Clear();
-            Console.Write($"{plr.name}'s turn\n\n1 - Rock\n2 - Paper\n3 - Siccors\nEnter selection: ");
+            Console.Write($"\n{plr.name}'s turn\n\n1 - Rock\n2 - Paper\n3 - Siccors\nEnter selection: ");
             
-            int input = int.Parse(Console.ReadLine());
-            if (1 <= input && input <= 3)
+            if (int.TryParse(Console.ReadLine(), out int input) && 1 <= input && input <= 3)
                 return input;
+            
+            else { //the else is unnecessary but i put it here cause why not
+                Console.Clear();
+                Console.WriteLine("Invalid selection!");
+            }
         }
     }
 }
