@@ -90,7 +90,7 @@ class Program {
 }
 
 
-class NumberGuessingGame() {
+class NumberGuessingGame {
     public static int number;
 
     public static Player[] GameMain(Player plr1, Player plr2) {
@@ -128,7 +128,7 @@ class NumberGuessingGame() {
 }
 
 
-class MultiplicationGame() {
+class MultiplicationGame {
     public static Random random = new Random();
 
     public static Player[] GameMain(Player plr1, Player plr2) {
@@ -163,7 +163,7 @@ class MultiplicationGame() {
 }
 
 
-class SpellingGame() {
+class SpellingGame {
     public static Player[] GameMain(Player plr1, Player plr2) {    
         while (true) {
             if (Guess(plr1, plr2))
@@ -208,7 +208,7 @@ class SpellingGame() {
 }
 
 
-class BattleshipGame() { //"bs"
+class BattleshipGame { //"bs"
     public static bool[] grid = new bool[25]; //is the grid meant to be 5x5
 
     public static Player[] GameMain(Player plr1, Player plr2) {
@@ -261,7 +261,7 @@ class BattleshipGame() { //"bs"
 }
 
 
-class RockPaperSiccors() {
+class RockPaperSiccors {
     public static Player[] GameMain(Player plr1, Player plr2) {
         while (true) {
             int s1 = Select(plr1);
